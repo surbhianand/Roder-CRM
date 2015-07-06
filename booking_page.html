@@ -1,0 +1,127 @@
+<html>
+<head>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<title>Query form</title>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script type="text/javascript">
+</script>
+<script>
+function fun(str) {
+	$.post("find_booking.php",
+		{
+			phn:str
+		},
+		function(data, status){
+	//alert(data);	
+for(var i in data)
+{
+ //    var phone_number= data[i].phone_number;
+     var from_address = data[i].from_address;
+	 var to_address=data[i].to_address;
+	 var from_latitude=data[i].from_latitude;
+	 var from_longitude=data[i].from_longitude;
+	 var to_latitude=data[i].to_latitude;
+	 var to_longitude=data[i].to_longitude;
+  //console.log(phone_number);
+  //console_log(from_address);
+  
+//document.getElementById('phn_no').value= phone_number;
+document.getElementById('from_address').value=from_address;
+document.getElementById('to_address').value=to_address;
+document.getElementById('from_latitude').value=from_latitude;
+document.getElementById('to_latitude').value=to_latitude;
+document.getElementById('from_longitude').value=from_longitude;	
+document.getElementById('to_longitude').value=to_longitude; 
+}
+		
+		},"json");	
+	 }
+
+</script>
+<style>
+table, th , td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+  
+}
+#car_one_way{
+
+display:none;
+}
+#car_two_way{
+display:none;
+}
+
+#hourly_rentals{
+display:none;
+}
+h1{
+text-align:right;
+}
+
+
+table tr:nth-child(odd) {
+  background-color: #f2f2f2;
+}
+table tr:nth-child(even) {
+ 
+ background-color: #ffffff;
+}
+
+#pending{
+position:absolute;
+float:right;
+top:300px;
+left :1000px;
+}
+#confirmed{
+position:absolute;
+float:right;
+top:350px;
+left :1000px;
+}
+#completed{
+position:absolute;
+float:right;
+top:400px;
+left :1000px;
+}
+
+</style>
+</head>
+<body>
+<h2>Query form</h2>
+<div>
+<form name="Form"  method="post"  novalidate>
+<table border="0" style="float:left">
+<tr><td>Phone no. :</td><td><input name="phone_no" type="text"  value="phone_no" onchange="fun(this.value)" required>
+   
+</td></tr>
+
+<tr><td>From address:</td><td><input name="from_address" type="text"  id="from_address" required>
+  
+</td></tr>
+
+<tr><td>To address:</td><td><input name="to_address" type="text"  id="to_address" required>
+  
+</td></tr>
+
+<tr><td>From latitude:</td><td><input name="from_latitude" type="text"  id="from_latitude" required>
+  
+</td></tr>
+<tr><td>From longitude:</td><td><input name="from_longitude" type="text" id="from_longitude" required>
+  
+</td></tr>
+<tr><td>To latitude:</td><td><input name="to_latitude" type="text"  id="to_latitude" required>
+  
+</td></tr>
+<tr><td>To longitude:</td><td><input name="to_longitude" type="text"  id="to_longitude" required>
+  
+</td></tr>
+
+
+</form>
+</div>
+</body>
+</html>
